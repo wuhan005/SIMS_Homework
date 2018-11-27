@@ -59,7 +59,7 @@ void drawMainPageUI(void) {
 	printf("                                            /      \\        .--'\n");
 	printf("                                           |       /        )'-.\n");
 	printf("                                           ; ,    <__..-(    '-.)\n");
-	printf("                                            \ \\-.__)     ``--._)\n");
+	printf("                                            \\ \\-.__)     ``--._)\n");
 	printf("                                             '.'-.__.-.\n");
 	printf("                                               '-...-'   \n");
 
