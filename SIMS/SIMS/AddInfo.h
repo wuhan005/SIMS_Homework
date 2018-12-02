@@ -9,12 +9,12 @@ char inputData[8][50];	//输入的字段
 int nowInputIndex = 0;
 char tips[50] = { "" };		//反馈提示
 
-sqlite3 *db = 0;	//数据库
-int ret = 0;	//反馈值
-char *errmsg = 0;
-
 //添加数据到数据库
-void addData(char _data[8][50]) {	
+void addData(char _data[8][50]) {
+	sqlite3 *db = 0;	//数据库
+	int ret = 0;	//反馈值
+	char *errmsg = 0;
+
 	char query[2000] = { "" };
 	sprintf(query ,"INSERT INTO `Students` (`ID`, `Name`, `Age`, `Sex`, `Birth`, `Tel`, `Mail`, `Address`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", _data[0], _data[1], _data[2], _data[3], _data[4], _data[5], _data[6], _data[7]);
 

@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="About.h" />
     <ClInclude Include="AddInfo.h" />
+    <ClInclude Include="BrowseInfo.h" />
     <ClInclude Include="MainPage.h" />
     <ClInclude Include="sqlite3.h" />
   </ItemGroup>
