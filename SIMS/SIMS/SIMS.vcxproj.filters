@@ -18,6 +18,9 @@
     <ClCompile Include="SIMS.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainPage.h">
@@ -27,6 +30,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="AddInfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

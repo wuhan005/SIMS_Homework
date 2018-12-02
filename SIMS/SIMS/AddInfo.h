@@ -1,4 +1,5 @@
 #pragma once
+#include "sqlite3.h"
 //添加学生信息
 
 void printForm(int nowIndex);
@@ -8,7 +9,23 @@ char inputData[8][50];	//输入的字段
 int nowInputIndex = 0;
 char tips[50] = { "" };		//反馈提示
 
+//数据库
+sqlite3 *db = 0;
+int ret = 0;
+const char *sql_create_table = "create table t(id int primary key,msg varchar(128))";
+char *errmsg = 0;
+
+
+void initDatabase() {
+	ret = sqlite3_open("./student.db", &db);
+	ret = sqlite3_exec(db, sql_create_table, NULL, NULL, &errmsg);
+	sqlite3_free(errmsg);
+	sqlite3_close(db);
+}
+
+
 int loadAddInfoPage(void) {
+	initDatabase();
 	
 	//每次进入时都清空上次的数据
 	for (int i = 0; i < 8; i++) {
