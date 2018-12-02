@@ -6,6 +6,7 @@ int ScriptCheck(char _input[50]);
 
 char inputData[8][50];	//输入的字段
 int nowInputIndex = 0;
+char tips[50] = { "" };		//反馈提示
 
 int loadAddInfoPage(void) {
 	
@@ -14,6 +15,7 @@ int loadAddInfoPage(void) {
 		strcpy(inputData[i], "");
 	}
 	nowInputIndex = 0;
+
 
 	while (1){
 		system("cls");
@@ -44,9 +46,9 @@ int loadAddInfoPage(void) {
 			printf("-");
 		}
 
-		printf("  --%s", tips);		//提示
+		printf("\n\n   %s", tips);		//提示
 
-		printf("\n\n\n\n");
+		printf("\n\n");
 
 
 		// =============== UI ================= //
@@ -93,6 +95,8 @@ void printForm(int nowIndex) {
 
 //检测用户输入的是否是指令
 int ScriptCheck(char _input[50]) {
+	strcpy(tips, "");	//清除上一次的提示
+
 	char instruction[5][10] = {
 		"/exit",
 		"/save",
@@ -102,6 +106,10 @@ int ScriptCheck(char _input[50]) {
 
 	int insCode = -1;
 
+	if (_input[0] != '/') {		//判断用户输入的是否是指令
+		return 0;
+	}
+
 	for (int i = 0; i < 5; i++) {		//遍历检测用户输入的指令
 		if (!strcmp(_input, instruction[i])) {
 			insCode = i;
@@ -110,7 +118,8 @@ int ScriptCheck(char _input[50]) {
 	}
 
 	if (insCode == -1) {
-		return 0;
+		strcpy(tips, "您输入的指令有误！");
+		return 1;
 	}
 
 	switch (insCode) {
