@@ -1,4 +1,5 @@
-#pragma once
+#define winConls 110
+#define winLines 35
 
 //¹ØÓÚÒ³Ãæ
 

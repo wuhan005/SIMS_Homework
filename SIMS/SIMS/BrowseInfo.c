@@ -1,4 +1,10 @@
-#pragma once
+#define winConls 110
+#define winLines 35
+
+#include <stdio.h>
+#include <windows.h>
+
+#include "sqlite3.h"
 
 void showData(void);
 

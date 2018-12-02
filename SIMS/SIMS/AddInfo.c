@@ -1,13 +1,17 @@
-#pragma once
-#include "sqlite3.h"
-//添加学生信息
+#include <windows.h>
+#include <stdio.h>
 
-void printForm(int nowIndex);
-int ScriptCheck(char _input[50]);
+#include "sqlite3.h"
+#define winConls 110
+#define winLines 35
+
+//添加学生信息
 
 char inputData[8][50];	//输入的字段
 int nowInputIndex = 0;
 char tips[50] = { "" };		//反馈提示
+
+void printForm(int nowIndex);
 
 //添加数据到数据库
 void addData(char _data[8][50]) {
@@ -16,7 +20,7 @@ void addData(char _data[8][50]) {
 	char *errmsg = 0;
 
 	char query[2000] = { "" };
-	sprintf(query ,"INSERT INTO `Students` (`ID`, `Name`, `Age`, `Sex`, `Birth`, `Tel`, `Mail`, `Address`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", _data[0], _data[1], _data[2], _data[3], _data[4], _data[5], _data[6], _data[7]);
+	sprintf(query, "INSERT INTO `Students` (`ID`, `Name`, `Age`, `Sex`, `Birth`, `Tel`, `Mail`, `Address`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", _data[0], _data[1], _data[2], _data[3], _data[4], _data[5], _data[6], _data[7]);
 
 	ret = sqlite3_open("./student.db", &db);	//连接数据库
 	ret = sqlite3_exec(db, query, NULL, NULL, &errmsg);	//执行SQL
@@ -25,7 +29,7 @@ void addData(char _data[8][50]) {
 }
 
 int loadAddInfoPage(void) {
-	
+
 	//每次进入时都清空上次的数据
 	for (int i = 0; i < 8; i++) {
 		strcpy(inputData[i], "");
@@ -33,7 +37,7 @@ int loadAddInfoPage(void) {
 	nowInputIndex = 0;
 
 
-	while (1){
+	while (1) {
 		system("cls");
 
 		//上方的线
@@ -79,14 +83,16 @@ int loadAddInfoPage(void) {
 
 			if (nowInputIndex == 7) {
 				//nowInputIndex = 0;		//实际使用感觉不需要这个
-			}else {
+			}
+			else {
 				nowInputIndex++;
 			}
 
 		}
 		else if (scriptFlag == 1) {
 
-		}else if (scriptFlag == -1) {		//退出的指令
+		}
+		else if (scriptFlag == -1) {		//退出的指令
 			return 0;
 		}
 
@@ -101,7 +107,8 @@ void printForm(int nowIndex) {
 	for (int i = 0; i < 8; i++) {
 		if (nowIndex == i) {
 			printf("              > ");
-		}else {
+		}
+		else {
 			printf("                ");
 		}
 
@@ -144,8 +151,8 @@ int ScriptCheck(char _input[50]) {
 		break;
 	case 1:
 		addData(inputData);		//SAVE
-		
-		//清空上次的数据
+
+								//清空上次的数据
 		for (int i = 0; i < 8; i++) {
 			strcpy(inputData[i], "");
 		}
@@ -155,14 +162,16 @@ int ScriptCheck(char _input[50]) {
 	case 2:	//UP
 		if (nowInputIndex != 0) {
 			nowInputIndex--;
-		}else {
+		}
+		else {
 			nowInputIndex = 7;
 		}
 		break;
 	case 3:		//DOWN
 		if (nowInputIndex != 7) {
 			nowInputIndex++;
-		}else{
+		}
+		else {
 			nowInputIndex = 0;
 		}
 		break;
