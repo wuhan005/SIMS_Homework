@@ -9,23 +9,22 @@ char inputData[8][50];	//输入的字段
 int nowInputIndex = 0;
 char tips[50] = { "" };		//反馈提示
 
-//数据库
-sqlite3 *db = 0;
-int ret = 0;
-const char *sql_create_table = "create table t(id int primary key,msg varchar(128))";
+sqlite3 *db = 0;	//数据库
+int ret = 0;	//反馈值
 char *errmsg = 0;
 
+//添加数据到数据库
+void addData(char _data[8][50]) {	
+	char query[2000] = { "" };
+	sprintf(query ,"INSERT INTO `Students` (`ID`, `Name`, `Age`, `Sex`, `Birth`, `Tel`, `Mail`, `Address`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", _data[0], _data[1], _data[2], _data[3], _data[4], _data[5], _data[6], _data[7]);
 
-void initDatabase() {
-	ret = sqlite3_open("./student.db", &db);
-	ret = sqlite3_exec(db, sql_create_table, NULL, NULL, &errmsg);
+	ret = sqlite3_open("./student.db", &db);	//连接数据库
+	ret = sqlite3_exec(db, query, NULL, NULL, &errmsg);	//执行SQL
 	sqlite3_free(errmsg);
-	sqlite3_close(db);
+	sqlite3_close(db);		//断开连接
 }
 
-
 int loadAddInfoPage(void) {
-	initDatabase();
 	
 	//每次进入时都清空上次的数据
 	for (int i = 0; i < 8; i++) {
@@ -79,7 +78,7 @@ int loadAddInfoPage(void) {
 			strcpy(inputData[nowInputIndex], userInput);		//修改字段
 
 			if (nowInputIndex == 7) {
-				nowInputIndex = 0;
+				//nowInputIndex = 0;		//实际使用感觉不需要这个
 			}else {
 				nowInputIndex++;
 			}
@@ -144,6 +143,14 @@ int ScriptCheck(char _input[50]) {
 		return -1;		//EXIT
 		break;
 	case 1:
+		addData(inputData);		//SAVE
+		
+		//清空上次的数据
+		for (int i = 0; i < 8; i++) {
+			strcpy(inputData[i], "");
+		}
+		nowInputIndex = 0;
+
 		break;
 	case 2:	//UP
 		if (nowInputIndex != 0) {
