@@ -44,18 +44,16 @@ int loadDeleteInfoPage(void) {
 		char inputID[50];
 
 		printf("\n\n"
-			"请输入要删除的学生的学号\n\n");
+			"请输入要删除的学生的学号\n输入 /exit 返回首页\n\n");
 
 		scanf("%s", inputID);
 
 		if (strcmp(inputID, "/exit") == 0) {	//输入退出指令
-
+			return 0;
+		}else {
+			deleteData(inputID);
 		}
-		deleteData(inputID);
 
-		//getchar();
-
-		//return 0;
 	}
 
 	return 0;
