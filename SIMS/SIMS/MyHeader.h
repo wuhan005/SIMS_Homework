@@ -12,6 +12,8 @@ void printForm(int nowIndex);
 void addData(char _data[8][50]);
 int loadAddInfoPage(void);
 
+//DeleteInfo.c
+int loadDeleteInfoPage(void);
 
 //char inputData[8][50];	//ÊäÈëµÄ×Ö¶Î
 //int nowInputIndex = 0;

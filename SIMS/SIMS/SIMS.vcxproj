@@ -150,6 +150,7 @@
     <ClCompile Include="About.c" />
     <ClCompile Include="AddInfo.c" />
     <ClCompile Include="BrowseInfo.c" />
+    <ClCompile Include="DeleteInfo.c" />
     <ClCompile Include="MainPage.c" />
     <ClCompile Include="SIMS.c" />
     <ClCompile Include="sqlite3.c" />
