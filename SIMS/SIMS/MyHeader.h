@@ -15,9 +15,9 @@ int loadAddInfoPage(void);
 //DeleteInfo.c
 int loadDeleteInfoPage(void);
 
-//char inputData[8][50];	//ÊäÈëµÄ×Ö¶Î
+//char inputData[8][50];	//è¾“å…¥çš„å­—æ®µ
 //int nowInputIndex = 0;
-//char tips[50] = { "" };		//·´À¡ÌáÊ¾
+//char tips[50] = { "" };		//åé¦ˆæç¤º
 
 //BrowseInfo.c
 int loadBrowseInfoPage(void);

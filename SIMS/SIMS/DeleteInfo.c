@@ -1,4 +1,4 @@
-//É¾³ıĞÅÏ¢
+//åˆ é™¤ä¿¡æ¯
 #define winConls 110
 #define winLines 35
 
@@ -13,30 +13,30 @@ static void showData(void);
 int nowIndex = 0;
 int dataCount = 0;
 
-sqlite3 *db = 0;	//Êı¾İ¿â
-int ret = 0;	//·´À¡Öµ
+sqlite3 *db = 0;	//æ•°æ®åº“
+int ret = 0;	//åé¦ˆå€¼
 char *errmsg = 0;
-char **dbResult;	//·µ»ØµÄ²éÑ¯Êı¾İ
+char **dbResult;	//è¿”å›çš„æŸ¥è¯¢æ•°æ®
 int rowNum, columnNum, index;
 
 int loadDeleteInfoPage(void) {
 
-	sqlite3_open("./student.db", &db);	//Á¬½ÓÊı¾İ¿â
+	sqlite3_open("./student.db", &db);	//è¿æ¥æ•°æ®åº“
 
 	while (1) {
 		system("cls");
 
-		//ÉÏ·½µÄÏß
+		//ä¸Šæ–¹çš„çº¿
 		printf("=============================================================================================================="
-			   "\n\n                                           >   É¾  ³ı  Ñ§  Éú  ĞÅ  Ï¢\n\n"
+			   "\n\n                                           >   åˆ   é™¤  å­¦  ç”Ÿ  ä¿¡  æ¯\n\n"
 			   "=============================================================================================================="
 		       "\n\n"
-			   "   Ñ§ºÅ   ĞÕÃû        ÄêÁä  ĞÔ±ğ   ³öÉúÄêÔÂ     µç»°          E-Mail              µØÖ·\n"
+			   "   å­¦å·   å§“å        å¹´é¾„  æ€§åˆ«   å‡ºç”Ÿå¹´æœˆ     ç”µè¯          E-Mail              åœ°å€\n"
 			   "--------------------------------------------------------------------------------------------------------------");
 
 		printf("\n");
 
-		showData();		//ÏÔÊ¾Êı¾İ
+		showData();		//æ˜¾ç¤ºæ•°æ®
 
 		printf("\n");
 		printf("--------------------------------------------------------------------------------------------------------------");
@@ -44,11 +44,11 @@ int loadDeleteInfoPage(void) {
 		char inputID[50];
 
 		printf("\n\n"
-			"ÇëÊäÈëÒªÉ¾³ıµÄÑ§ÉúµÄÑ§ºÅ\nÊäÈë /exit ·µ»ØÊ×Ò³\n\n");
+			"è¯·è¾“å…¥è¦åˆ é™¤çš„å­¦ç”Ÿçš„å­¦å·\nè¾“å…¥ /exit è¿”å›é¦–é¡µ\n\n");
 
 		scanf("%s", inputID);
 
-		if (strcmp(inputID, "/exit") == 0) {	//ÊäÈëÍË³öÖ¸Áî
+		if (strcmp(inputID, "/exit") == 0) {	//è¾“å…¥é€€å‡ºæŒ‡ä»¤
 			return 0;
 		}else {
 			deleteData(inputID);
@@ -67,7 +67,7 @@ static void deleteData(char _ID[50]) {
 	ret = sqlite3_exec(db, query, &dbResult, &rowNum, &columnNum, &errmsg);
 }
 
-//ÏÔÊ¾Êı¾İ
+//æ˜¾ç¤ºæ•°æ®
 static void showData(void) {
 	ret = sqlite3_get_table(db, "SELECT * FROM `Students`", &dbResult, &rowNum, &columnNum, &errmsg);
 	if (ret == SQLITE_OK) {

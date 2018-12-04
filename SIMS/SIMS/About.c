@@ -1,43 +1,43 @@
 #define winConls 110
 #define winLines 35
 
-//¹ØÓÚÒ³Ãæ
+//å…³äºé¡µé¢
 
 void drawAboutPage(void) {
 	system("cls");
 
-	//ÉÏ·½µÄÏß
+	//ä¸Šæ–¹çš„çº¿
 	for (int i = 0; i < winConls; i++) {
 		printf("=");
 	}
 
 	printf("\n\n\n");
 
-	printf("                                       Ñ§  Éú  ĞÅ  Ï¢  ¹Ü  Àí  Ïµ  Í³\n\n");
+	printf("                                       å­¦  ç”Ÿ  ä¿¡  æ¯  ç®¡  ç†  ç³»  ç»Ÿ\n\n");
 	printf("                                  Student Information Manage System (SIMS)\n\n\n");
 
-	printf("                                 ´óÒ» C ÓïÑÔ´ó×÷Òµ / Yuuki AsunaĞ¡×é ÖÆ×÷\n\n\n");
-	printf("                                              ×é³¤£ºÎâå«\n\n");
-	printf("                                              ×éÔ±£º³Âäìº­ ÀîÑÒ\n\n\n\n\n\n");
+	printf("                                 å¤§ä¸€ C è¯­è¨€å¤§ä½œä¸š / Yuuki Asunaå°ç»„ åˆ¶ä½œ\n\n\n");
+	printf("                                              ç»„é•¿ï¼šå´ç€š\n\n");
+	printf("                                              ç»„å‘˜ï¼šé™ˆæ½‡æ¶µ æå²©\n\n\n\n\n\n");
 
-	printf("                      ±¾ÏîÄ¿ÒÑ¿ªÔ´ÖÁ GitHub£¬https://github.com/wuhan005/SIMS_Homework\n\n");
-	printf("                          ²ÉÓÃ GNU General Public License v3.0 ¿ªÔ´Ğí¿ÉĞ­Òé½øĞĞĞí¿É");
+	printf("                      æœ¬é¡¹ç›®å·²å¼€æºè‡³ GitHubï¼Œhttps://github.com/wuhan005/SIMS_Homework\n\n");
+	printf("                          é‡‡ç”¨ GNU General Public License v3.0 å¼€æºè®¸å¯åè®®è¿›è¡Œè®¸å¯");
 
 
 	printf("\n\n\n\n\n\n\n\n\n\n");
 
-	//ÏÂ·½µÄÏß
+	//ä¸‹æ–¹çš„çº¿
 	for (int i = 0; i < winConls; i++) {
 		printf("=");
 	}
 
-	printf("°´ÏÂ B ·µ»Øµ½Ö÷²Ëµ¥\n");
+	printf("æŒ‰ä¸‹ B è¿”å›åˆ°ä¸»èœå•\n");
 }
 
 int loadAboutPage() {
 	while (1) {
 
-		drawAboutPage();	//»æÖÆ½çÃæ
+		drawAboutPage();	//ç»˜åˆ¶ç•Œé¢
 
 		char ch = getchar();
 
@@ -46,7 +46,7 @@ int loadAboutPage() {
 			break;
 		}
 
-		//È¥³ı¶àÓà×Ö·û£¬Ö±µ½»»ĞĞ·û¡£µÈ´ıÏÂÒ»´ÎÊäÈë¡£
+		//å»é™¤å¤šä½™å­—ç¬¦ï¼Œç›´åˆ°æ¢è¡Œç¬¦ã€‚ç­‰å¾…ä¸‹ä¸€æ¬¡è¾“å…¥ã€‚
 		while (ch != '\n') {
 			ch = getchar();
 		}

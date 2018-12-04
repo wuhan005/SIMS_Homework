@@ -12,26 +12,26 @@ int loadBrowseInfoPage(void) {
 	while (1) {
 		system("cls");
 
-		//ÉÏ·½µÄÏß
+		//ä¸Šæ–¹çš„çº¿
 		for (int i = 0; i < winConls; i++) {
 			printf("=");
 		}
 
-		printf("\n\n                                           >   ä¯  ÀÀ  Ñ§  Éú  ĞÅ  Ï¢\n\n");
+		printf("\n\n                                           >   æµ  è§ˆ  å­¦  ç”Ÿ  ä¿¡  æ¯\n\n");
 
 		for (int i = 0; i < winConls; i++) {
 			printf("=");
 		}
 		printf("\n\n");
 
-		printf(" Ñ§ºÅ   ĞÕÃû        ÄêÁä  ĞÔ±ğ   ³öÉúÄêÔÂ     µç»°          E-Mail              µØÖ·\n");
+		printf(" å­¦å·   å§“å        å¹´é¾„  æ€§åˆ«   å‡ºç”Ÿå¹´æœˆ     ç”µè¯          E-Mail              åœ°å€\n");
 		for (int i = 0; i < winConls; i++) {
 			printf("-");
 		}
 
 		printf("\n");
 
-		showData();		//ÏÔÊ¾Êı¾İ
+		showData();		//æ˜¾ç¤ºæ•°æ®
 
 		printf("\n");
 
@@ -39,11 +39,11 @@ int loadBrowseInfoPage(void) {
 			printf("-");
 		}
 
-		printf("\n\n ÊäÈëÈÎÒâ¼üÀ´·µ»Ø \n\n");
+		printf("\n\n è¾“å…¥ä»»æ„é”®æ¥è¿”å› \n\n");
 
 		getch();
-		while (kbhit()){        // ¼ì²éÊÇ·ñÓĞ°´¼ü
-			getch();      //¶ÁÈ¡Á÷ÖĞ×Ö·û
+		while (kbhit()){        // æ£€æŸ¥æ˜¯å¦æœ‰æŒ‰é”®
+			getch();      //è¯»å–æµä¸­å­—ç¬¦
 		}
 
 		return 0;
@@ -52,15 +52,15 @@ int loadBrowseInfoPage(void) {
 	return 0;
 }
 
-//ÏÔÊ¾Êı¾İ
+//æ˜¾ç¤ºæ•°æ®
 static void showData(void) {
-	sqlite3 *db = 0;	//Êı¾İ¿â
-	int ret = 0;	//·´À¡Öµ
+	sqlite3 *db = 0;	//æ•°æ®åº“
+	int ret = 0;	//åé¦ˆå€¼
 	char *errmsg = 0;
-	char **dbResult;	//·µ»ØµÄ²éÑ¯Êı¾İ
+	char **dbResult;	//è¿”å›çš„æŸ¥è¯¢æ•°æ®
 	int rowNum, columnNum, index;
 
-	sqlite3_open("./student.db", &db);	//Á¬½ÓÊı¾İ¿â
+	sqlite3_open("./student.db", &db);	//è¿æ¥æ•°æ®åº“
 
 	ret = sqlite3_get_table(db, "SELECT * FROM `Students`", &dbResult, &rowNum, &columnNum, &errmsg);
 	if (ret == SQLITE_OK) {

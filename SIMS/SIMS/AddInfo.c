@@ -5,32 +5,32 @@
 #define winConls 110
 #define winLines 35
 
-//Ìí¼ÓÑ§ÉúĞÅÏ¢
+//æ·»åŠ å­¦ç”Ÿä¿¡æ¯
 
-char inputData[8][50];	//ÊäÈëµÄ×Ö¶Î
+char inputData[8][50];	//è¾“å…¥çš„å­—æ®µ
 int nowInputIndex = 0;
-char tips[50] = { "" };		//·´À¡ÌáÊ¾
+char tips[50] = { "" };		//åé¦ˆæç¤º
 
 void printForm(int nowIndex);
 
-//Ìí¼ÓÊı¾İµ½Êı¾İ¿â
+//æ·»åŠ æ•°æ®åˆ°æ•°æ®åº“
 void addData(char _data[8][50]) {
-	sqlite3 *db = 0;	//Êı¾İ¿â
-	int ret = 0;	//·´À¡Öµ
+	sqlite3 *db = 0;	//æ•°æ®åº“
+	int ret = 0;	//åé¦ˆå€¼
 	char *errmsg = 0;
 
 	char query[2000] = { "" };
 	sprintf(query, "INSERT INTO `Students` (`ID`, `Name`, `Age`, `Sex`, `Birth`, `Tel`, `Mail`, `Address`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", _data[0], _data[1], _data[2], _data[3], _data[4], _data[5], _data[6], _data[7]);
 
-	ret = sqlite3_open("./student.db", &db);	//Á¬½ÓÊı¾İ¿â
-	ret = sqlite3_exec(db, query, NULL, NULL, &errmsg);	//Ö´ĞĞSQL
+	ret = sqlite3_open("./student.db", &db);	//è¿æ¥æ•°æ®åº“
+	ret = sqlite3_exec(db, query, NULL, NULL, &errmsg);	//æ‰§è¡ŒSQL
 	sqlite3_free(errmsg);
-	sqlite3_close(db);		//¶Ï¿ªÁ¬½Ó
+	sqlite3_close(db);		//æ–­å¼€è¿æ¥
 }
 
 int loadAddInfoPage(void) {
 
-	//Ã¿´Î½øÈëÊ±¶¼Çå¿ÕÉÏ´ÎµÄÊı¾İ
+	//æ¯æ¬¡è¿›å…¥æ—¶éƒ½æ¸…ç©ºä¸Šæ¬¡çš„æ•°æ®
 	for (int i = 0; i < 8; i++) {
 		strcpy(inputData[i], "");
 	}
@@ -40,12 +40,12 @@ int loadAddInfoPage(void) {
 	while (1) {
 		system("cls");
 
-		//ÉÏ·½µÄÏß
+		//ä¸Šæ–¹çš„çº¿
 		for (int i = 0; i < winConls; i++) {
 			printf("=");
 		}
 
-		printf("\n\n                                           >   Â¼  Èë  Ñ§  Éú  ĞÅ  Ï¢\n\n");
+		printf("\n\n                                           >   å½•  å…¥  å­¦  ç”Ÿ  ä¿¡  æ¯\n\n");
 
 		for (int i = 0; i < winConls; i++) {
 			printf("=");
@@ -57,32 +57,32 @@ int loadAddInfoPage(void) {
 
 		printf("\n\n\n");
 
-		//²Ù×÷Ö¸Áî
+		//æ“ä½œæŒ‡ä»¤
 		for (int i = 0; i < winConls; i++) {
 			printf("-");
 		}
-		printf("\n\n             /save ±£´æ          /up ÉÏÒ»¸ö×Ö¶Î          /down ÏÂÒ»¸ö×Ö¶Î          /exit ·µ»Ø\n\n");
+		printf("\n\n             /save ä¿å­˜          /up ä¸Šä¸€ä¸ªå­—æ®µ          /down ä¸‹ä¸€ä¸ªå­—æ®µ          /exit è¿”å›\n\n");
 		for (int i = 0; i < winConls; i++) {
 			printf("-");
 		}
 
-		printf("\n\n   %s", tips);		//ÌáÊ¾
+		printf("\n\n   %s", tips);		//æç¤º
 
 		printf("\n\n");
 
 
 		// =============== UI ================= //
 
-		char userInput[50];		//ÓÃ»§ÊäÈëµÄÖµ
+		char userInput[50];		//ç”¨æˆ·è¾“å…¥çš„å€¼
 		scanf("%s", userInput);
 
 		int scriptFlag = ScriptCheck(userInput);
 
-		if (scriptFlag == 0) {		//ÓÃ»§ÊäÈëÊÇÊı¾İ
-			strcpy(inputData[nowInputIndex], userInput);		//ĞŞ¸Ä×Ö¶Î
+		if (scriptFlag == 0) {		//ç”¨æˆ·è¾“å…¥æ˜¯æ•°æ®
+			strcpy(inputData[nowInputIndex], userInput);		//ä¿®æ”¹å­—æ®µ
 
 			if (nowInputIndex == 7) {
-				//nowInputIndex = 0;		//Êµ¼ÊÊ¹ÓÃ¸Ğ¾õ²»ĞèÒªÕâ¸ö
+				//nowInputIndex = 0;		//å®é™…ä½¿ç”¨æ„Ÿè§‰ä¸éœ€è¦è¿™ä¸ª
 			}
 			else {
 				nowInputIndex++;
@@ -92,17 +92,17 @@ int loadAddInfoPage(void) {
 		else if (scriptFlag == 1) {
 
 		}
-		else if (scriptFlag == -1) {		//ÍË³öµÄÖ¸Áî
+		else if (scriptFlag == -1) {		//é€€å‡ºçš„æŒ‡ä»¤
 			return 0;
 		}
 
 	}
 }
 
-//´òÓ¡ÊäÈëµÄ±íµ¥
+//æ‰“å°è¾“å…¥çš„è¡¨å•
 void printForm(int nowIndex) {
 
-	char inputField[8][50] = { "Ñ§ºÅ", "ĞÕÃû", "ÄêÁä", "ĞÔ±ğ", "³öÉúÄêÔÂ", "µç»°", "E-Mail", "µØÖ·" };	//×Ö¶ÎÌáÊ¾
+	char inputField[8][50] = { "å­¦å·", "å§“å", "å¹´é¾„", "æ€§åˆ«", "å‡ºç”Ÿå¹´æœˆ", "ç”µè¯", "E-Mail", "åœ°å€" };	//å­—æ®µæç¤º
 
 	for (int i = 0; i < 8; i++) {
 		if (nowIndex == i) {
@@ -112,13 +112,13 @@ void printForm(int nowIndex) {
 			printf("                ");
 		}
 
-		printf("%s£º %s\n\n", inputField[i], inputData[i]);
+		printf("%sï¼š %s\n\n", inputField[i], inputData[i]);
 	}
 }
 
-//¼ì²âÓÃ»§ÊäÈëµÄÊÇ·ñÊÇÖ¸Áî
+//æ£€æµ‹ç”¨æˆ·è¾“å…¥çš„æ˜¯å¦æ˜¯æŒ‡ä»¤
 int ScriptCheck(char _input[50]) {
-	strcpy(tips, "");	//Çå³ıÉÏÒ»´ÎµÄÌáÊ¾
+	strcpy(tips, "");	//æ¸…é™¤ä¸Šä¸€æ¬¡çš„æç¤º
 
 	char instruction[5][10] = {
 		"/exit",
@@ -129,11 +129,11 @@ int ScriptCheck(char _input[50]) {
 
 	int insCode = -1;
 
-	if (_input[0] != '/') {		//ÅĞ¶ÏÓÃ»§ÊäÈëµÄÊÇ·ñÊÇÖ¸Áî
+	if (_input[0] != '/') {		//åˆ¤æ–­ç”¨æˆ·è¾“å…¥çš„æ˜¯å¦æ˜¯æŒ‡ä»¤
 		return 0;
 	}
 
-	for (int i = 0; i < 5; i++) {		//±éÀú¼ì²âÓÃ»§ÊäÈëµÄÖ¸Áî
+	for (int i = 0; i < 5; i++) {		//éå†æ£€æµ‹ç”¨æˆ·è¾“å…¥çš„æŒ‡ä»¤
 		if (!strcmp(_input, instruction[i])) {
 			insCode = i;
 			break;
@@ -141,7 +141,7 @@ int ScriptCheck(char _input[50]) {
 	}
 
 	if (insCode == -1) {
-		strcpy(tips, "ÄúÊäÈëµÄÖ¸ÁîÓĞÎó£¡");
+		strcpy(tips, "æ‚¨è¾“å…¥çš„æŒ‡ä»¤æœ‰è¯¯ï¼");
 		return 1;
 	}
 
@@ -152,7 +152,7 @@ int ScriptCheck(char _input[50]) {
 	case 1:
 		addData(inputData);		//SAVE
 
-								//Çå¿ÕÉÏ´ÎµÄÊı¾İ
+								//æ¸…ç©ºä¸Šæ¬¡çš„æ•°æ®
 		for (int i = 0; i < 8; i++) {
 			strcpy(inputData[i], "");
 		}
