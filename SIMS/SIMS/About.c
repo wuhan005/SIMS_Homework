@@ -1,4 +1,4 @@
-#define winConls 110
+﻿#define winConls 110
 #define winLines 35
 
 //关于页面
@@ -22,8 +22,6 @@ void drawAboutPage(void) {
 
 	printf("                      本项目已开源至 GitHub，https://github.com/wuhan005/SIMS_Homework\n\n");
 	printf("                          采用 GNU General Public License v3.0 开源许可协议进行许可");
-
-
 	printf("\n\n\n\n\n\n\n\n\n\n");
 
 	//下方的线

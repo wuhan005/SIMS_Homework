@@ -1,4 +1,4 @@
-#define winConls 110
+﻿#define winConls 110
 #define winLines 35
 
 #include <stdio.h>

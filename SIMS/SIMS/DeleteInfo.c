@@ -1,4 +1,4 @@
-//删除信息
+﻿//删除信息
 #define winConls 110
 #define winLines 35
 
