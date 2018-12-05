@@ -43,12 +43,12 @@ int loadSearchInfoPage(void) {
 			printf("-");
 		}
 
-		printf("\n\n 输入要查询的学生姓名或学号 \n\n");
+		printf("\n\n输入要查询的学生姓名或学号\n输入 /exit 返回首页\n\n");
 
         scanf("%s", input);
         isFirst = 0;
 
-        if(strcmp("input", "/exit") == 0){  //退出指令
+        if(strcmp(input, "/exit") == 0){  //退出指令
             return 0;
         }
 	}
@@ -58,7 +58,7 @@ int loadSearchInfoPage(void) {
 
 static void searchData(char _input[50]){
     if(isFirst){    //第一次查询
-        printf("输入数据");
+        printf("          请输入数据");
     }else{
         sqlite3 *db = 0;	//数据库
         int ret = 0;	//反馈值
@@ -67,7 +67,7 @@ static void searchData(char _input[50]){
 
         sqlite3_open("./student.db", &db);	//连接数据库
 
-        char query[200] = "SELECT * FROM `Students` WHERE `ID` = ";
+        char query[200] = "SELECT * FROM `Students` WHERE `ID` = '";
         strcat(query, _input);
         strcat(query, "' OR `Name` = '");
         strcat(query, _input);

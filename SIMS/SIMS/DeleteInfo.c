@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <windows.h>
-
 #include "sqlite3.h"
 
 static void deleteData(char _ID[]);
