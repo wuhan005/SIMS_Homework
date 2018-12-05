@@ -153,6 +153,7 @@
     <ClCompile Include="DeleteInfo.c" />
     <ClCompile Include="FindInfo.c" />
     <ClCompile Include="MainPage.c" />
+    <ClCompile Include="SearchInfo.c" />
     <ClCompile Include="SIMS.c" />
     <ClCompile Include="sqlite3.c" />
   </ItemGroup>

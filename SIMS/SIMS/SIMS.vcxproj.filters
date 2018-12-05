@@ -33,10 +33,13 @@
     <ClCompile Include="BrowseInfo.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DeleteInfo.c">
+    <ClCompile Include="FindInfo.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="FindInfo.c">
+    <ClCompile Include="SearchInfo.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteInfo.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
