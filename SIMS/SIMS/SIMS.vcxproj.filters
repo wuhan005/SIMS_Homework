@@ -42,6 +42,9 @@
     <ClCompile Include="DeleteInfo.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="EditInfo.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sqlite3.h">

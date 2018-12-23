@@ -151,6 +151,7 @@
     <ClCompile Include="AddInfo.c" />
     <ClCompile Include="BrowseInfo.c" />
     <ClCompile Include="DeleteInfo.c" />
+    <ClCompile Include="EditInfo.c" />
     <ClCompile Include="FindInfo.c" />
     <ClCompile Include="MainPage.c" />
     <ClCompile Include="SearchInfo.c" />
