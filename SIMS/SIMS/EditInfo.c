@@ -63,15 +63,15 @@ static int editDetail(char _ID[20]) {
 	int ret = 0;	//反馈值
 	char *errmsg = 0;
 	char **dbResult;	//返回的查询数据
-	char sqlQuery[50] = "SELECT * FROM `Students` WHERE `ID` = '";	//SQL语句
+	char sqlSelectQuery[50] = "SELECT * FROM `Students` WHERE `ID` = '";	//SQL语句
 	int rowNum, columnNum;
 
 	sqlite3_open("./student.db", &db);	//连接数据库
-	strcat(sqlQuery, _ID);
-	strcat(sqlQuery, "'");
+	strcat(sqlSelectQuery, _ID);
+	strcat(sqlSelectQuery, "'");
 
 	//======================= 加载数据库详细学生信息 =======================
-	ret = sqlite3_get_table(db, sqlQuery, &dbResult, &rowNum, &columnNum, &errmsg);
+	ret = sqlite3_get_table(db, sqlSelectQuery, &dbResult, &rowNum, &columnNum, &errmsg);
 	if (ret == SQLITE_OK) {
 		for (int i = 0; i < 8; i++) {
 			//将数据加入到 stuData
@@ -137,27 +137,54 @@ static int editDetail(char _ID[20]) {
 			}
 		}
 
+		//退出
 		if (insCode == 0) {
 			break;
 		}
-
+		//保存并退出
 		if (insCode == 1) {
+			char sqlUpdateQuery[500] = "UPDATE `Students` SET";
+			char sqlField[8][10] = { "ID", "Name", "Age", "Sex", "Birth", "Tel", "Mail", "Address" };
 
-			break;
+			for (int i = 0; i < 8; i++) {
+				strcat(sqlUpdateQuery, " `");
+				strcat(sqlUpdateQuery, sqlField[i]);
+				strcat(sqlUpdateQuery, "` = '");
+				strcat(sqlUpdateQuery, stuData[i]);
+				strcat(sqlUpdateQuery, "'");
+				if (i != 7) {
+					strcat(sqlUpdateQuery, ",");
+				}
+			}
+
+			strcat(sqlUpdateQuery, " WHERE `ID` = '");
+			strcat(sqlUpdateQuery, stuData[0]);
+			strcat(sqlUpdateQuery, "'");
+			
+			int rc = sqlite3_exec(db, sqlUpdateQuery, NULL, NULL, NULL);
+
+			if (rc == SQLITE_OK) {
+				sqlite3_close(db);
+				break;
+			}
 		}
 
 		switch (insCode) {
 			case 2:
-				
+				if (nowIndex != 0) {
+					nowIndex--;
+					continue;
+				}
 				break;
 			case 3:
-
+				if (nowIndex != 7) {
+					nowIndex++;
+					continue;
+				}
 				break;
 		}
 
-
 	}
-
 }
 
 //显示数据
