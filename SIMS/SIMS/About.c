@@ -7,10 +7,7 @@ void drawAboutPage(void) {
 	system("cls");
 
 	//上方的线
-	for (int i = 0; i < winConls; i++) {
-		printf("=");
-	}
-
+	printf("==============================================================================================================");
 	printf("\n\n\n");
 
 	printf("                                       学  生  信  息  管  理  系  统\n\n");
@@ -22,12 +19,12 @@ void drawAboutPage(void) {
 
 	printf("                      本项目已开源至 GitHub，https://github.com/wuhan005/SIMS_Homework\n\n");
 	printf("                          采用 GNU General Public License v3.0 开源许可协议进行许可");
-	printf("\n\n\n\n\n\n\n\n\n\n");
+	printf("\n\n\n");
+	printf("                             开源组件许可：SQLite - Licensed under Public Domain");
+	printf("\n\n\n\n\n\n\n");
 
 	//下方的线
-	for (int i = 0; i < winConls; i++) {
-		printf("=");
-	}
+	printf("==============================================================================================================");
 
 	printf("按下 B 返回到主菜单\n");
 }
