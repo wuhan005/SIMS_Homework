@@ -11,6 +11,8 @@ static void showData(void);
 static int editDetail(char _ID[20]);
 
 int loadEditInfoPage(void) {
+	int nowStatus = 0;	//当前提示状态
+
 	while (1) {
 		system("cls");
 
@@ -41,12 +43,25 @@ int loadEditInfoPage(void) {
 			printf("-");
 		}
 
-		printf("\n\n 请输入要修改的学生学号 \n\n");
+		switch (nowStatus) {//修改详细页 修改
+		case 1:
+			printf("\n 修改成功！");
+			break;
+		case -1:
+			printf("\n 输入有误！");
+			break;
+		}
+
+		printf("\n\n 请输入要修改的学生学号，/exit 退出。 \n\n");
 
 		char editID[20];
 		scanf("%s", editID);
 
-		editDetail(editID);		//修改详细页 修改
+		if (strcmp(editID, "/exit") == 0) {
+			return 0;
+		}
+
+		nowStatus = editDetail(editID);
 	}
 
 	return 0;
@@ -73,6 +88,10 @@ static int editDetail(char _ID[20]) {
 	//======================= 加载数据库详细学生信息 =======================
 	ret = sqlite3_get_table(db, sqlSelectQuery, &dbResult, &rowNum, &columnNum, &errmsg);
 	if (ret == SQLITE_OK) {
+		if (columnNum == 0) {
+			return -1;
+		}
+
 		for (int i = 0; i < 8; i++) {
 			//将数据加入到 stuData
 			strcpy(stuData[i], dbResult[i + 8]);
@@ -111,6 +130,15 @@ static int editDetail(char _ID[20]) {
 
 		printf("\n");
 
+		//操作指令
+		for (int i = 0; i < winConls; i++) {
+			printf("-");
+		}
+		printf("\n\n             /save 保存          /up 上一个字段          /down 下一个字段          /exit 返回\n\n");
+		for (int i = 0; i < winConls; i++) {
+			printf("-");
+		}
+
 		printf("\n\n");
 
 		scanf("%s", &_input);
@@ -137,10 +165,6 @@ static int editDetail(char _ID[20]) {
 			}
 		}
 
-		//退出
-		if (insCode == 0) {
-			break;
-		}
 		//保存并退出
 		if (insCode == 1) {
 			char sqlUpdateQuery[500] = "UPDATE `Students` SET";
@@ -165,17 +189,22 @@ static int editDetail(char _ID[20]) {
 
 			if (rc == SQLITE_OK) {
 				sqlite3_close(db);
-				break;
+				return 1;
 			}
 		}
 
 		switch (insCode) {
+			case 0:
+				return 0;
+				break;
+
 			case 2:
 				if (nowIndex != 0) {
 					nowIndex--;
 					continue;
 				}
 				break;
+
 			case 3:
 				if (nowIndex != 7) {
 					nowIndex++;
